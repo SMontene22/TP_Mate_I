@@ -1,3 +1,5 @@
+# Funciones
+
 def convertir_base(numero, base_origen, base_destino):
     # Convertir el número de la base de origen a decimal
     numero_decimal = int(numero, base_origen)
@@ -9,11 +11,11 @@ def convertir_base(numero, base_origen, base_destino):
     elif base_destino == 16:
         return hex(numero_decimal)[2:]  # Conversión a hexadecimal
     else:
-        # Conversión genérica a cualquier base
+        # Conversión genérica a cualquier base, a cada cifra lo multiplica por la base
         resultado = ""
         while numero_decimal > 0:
             resultado = str(numero_decimal % base_destino) + resultado
-            numero_decimal //= base_destino
+            numero_decimal = numero_decimal // base_destino # division entera
         return resultado
 
 def es_valido_en_base(numero, base):
@@ -22,8 +24,9 @@ def es_valido_en_base(numero, base):
         return True
     except ValueError:
         return False
+    
 
-
+# Programa principal
 
 valido=False
 # Inicio un bucle hasta que se ingrese un numero y base correcta.
@@ -38,8 +41,18 @@ while valido==False:
     else:
         print(f"El número {numero} NO es válido en la base {base_origen}.")
 
-
-base_destino = int(input("Ingrese la base a la que desea convertir (2, 8, 10, 16, etc.): "))
+valido=False
+while valido==False:
+    try:
+        base_destino = int(input("Ingrese la base a la que desea convertir (2, 8, 10, 16, etc.): "))
+        if base_destino>0:
+            valido=True
+        else:
+            print("No es una base a convertir válida")
+    except ValueError:
+        print("No es una base a convertir válida")
+        valido=False    
+    
 
 # Realizar la conversión y mostrar el resultado
 resultado = convertir_base(numero, base_origen, base_destino)
