@@ -30,7 +30,7 @@ def es_valido_en_base(numero, base):
 
 valido=False
 # Inicio un bucle hasta que se ingrese un numero y base correcta.
-while valido==False:
+while not valido:
     # Solicitar el número y su base
     numero = input("Ingrese el número: ")
     base_origen = int(input("Ingrese la base del número (2, 8, 10, 16): "))
@@ -42,7 +42,7 @@ while valido==False:
         print(f"El número {numero} NO es válido en la base {base_origen}.")
 
 valido=False
-while valido==False:
+while not valido:
     try:
         base_destino = int(input("Ingrese la base a la que desea convertir (2, 8, 10, 16, etc.): "))
         if base_destino>0:
